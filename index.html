@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	a{
+		text-decoration: none;
+	}
+	li{
+		list-style: square;
+	}
+	</style>
+	<script type="text/javascript">
+	function random(n,m){
+		return Math.floor(Math.random()*(m-n)+n);
+	}
+	
+	window.onload = function(){
+		var iNow = 0;
+		var arr = ['千千阙歌','夜的钢琴曲','小苹果','时间都去哪儿了'];
+		var oV = document.getElementsByTagName('audio')[0];
+		var aBtn  = document.getElementsByTagName('input');
+		var aA = document.getElementsByTagName('a');
+		for(var i=0;i<aA.length;i++){
+			aA[i].onclick = function(){
+				oV.src = this.innerHTML+'.mp3';
+				iNow=this.innerHTML;
+				oV.play();
+			};
+		}
+		for(var i =0;i<aBtn.length;i++){
+			aBtn[i].index = i;
+			aBtn[i].onclick = function(){
+				switch (this.index){
+					case 0:
+					oV.src = iNow+'.mp3';
+					oV.play();
+					break;
+					case 1:
+					this.index++;
+					if(this.index==arr.length){
+						alert('播放完毕');
+					}
+					oV.src  =arr[this.index]+'.mp3';
+					break;
+				};
+			};
+		}
+	};
+	</script>
+</head>
+<body>
+<audio src = '千千阙歌.mp3' controls></audio>
+<ul>
+	<li><a href="javascript:;">千千阙歌</a></li>
+	<li><a href="javascript:;">夜的钢琴曲</a></li>
+	<li><a href="javascript:;">小苹果</a></li>
+	<li><a href="javascript:;">时间都去哪儿了</a></li>
+</ul>
+<input type="button" value="单曲循环">
+<input type="button" value="顺序播放">
+<input type="button" value="随机播放">
+<input type="button" value="循环播放">
+</body>
+</html>
